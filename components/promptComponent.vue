@@ -1,6 +1,11 @@
 <template>
-  <div class="wrap" :style="wrapperStyle | generateStyleFromDictionary" v-on:click="cancelThisComponent">
-      <component v-bind:is="component" v-on:click.stop.native></component>
+  <div class="wrap" :style="wrapperStyle | generateStyleFromDictionary" 
+  v-on:click.stop.native="cancelThisComponent" 
+  v-on:touchend.stop.native="cancelThisComponent">
+    <component v-bind:is="component" 
+    v-on:click.stop.native 
+    v-on:touchend.stop.native>
+    </component>
   </div>
 </template>
 
