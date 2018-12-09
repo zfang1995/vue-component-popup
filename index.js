@@ -25,12 +25,13 @@ let componentPopUp = {
   },
   actions: {
     $popUp ({vueComponent, timeout = undefined, wrapperStyle = undefined}) {
-      console.log('componentPopUp: ', componentPopUp)
       if (typeof timeout === 'number') { 
         setTimeout(() => componentPopUp.mutations.CANCEL_A_PROMPT_COMPONENT(vueComponent), timeout) 
       }
       componentPopUp.mutations.ADD_PROMPT_COMPONENT({vueComponent, wrapperStyle})
-      return new Promise(() => {})
+      return new Promise((resolve) => {
+        resolve(function cancel () { componentPopUp.mutations.CANCEL_A_PROMPT_COMPONENT(vueComponent) })
+      })
     }
   }
 }
