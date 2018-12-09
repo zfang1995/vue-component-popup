@@ -34,6 +34,6 @@ this.$popUp(test, {
 ```
 #### overview
 | option    |  meaning | value for example |
-| :-------- | --------:|
+| --------- | -------- | -------- |
 | timeout  | the component pop-up will be cancel after (value)ms | 1000 |
 | wrapperStyle | the style of pop-up component`s wrapper| {'background-color': 'rgba(95, 75, 200, 0.5)', ‘margin’: 'none'} |
