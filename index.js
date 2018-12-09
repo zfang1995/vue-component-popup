@@ -24,9 +24,9 @@ let componentPopUp = {
     }
   },
   actions: {
-    $popUp (vueComponent, {timeout = undefined, wrapperStyle = undefined, stackContext = '#appPrompt'}) {
-      if (typeof timeout === 'number') { 
-        setTimeout(() => componentPopUp.mutations.CANCEL_A_PROMPT_COMPONENT(vueComponent), timeout) 
+    $popUp (vueComponent, {livingTime = undefined, wrapperStyle = undefined, stackContext = '#appPrompt'}) {
+      if (typeof livingTime === 'number') { 
+        setTimeout(() => componentPopUp.mutations.CANCEL_A_PROMPT_COMPONENT(vueComponent), livingTime) 
       }
       componentPopUp.mutations.ADD_PROMPT_COMPONENT({vueComponent, wrapperStyle, stackContext})
       return new Promise((resolve) => {
