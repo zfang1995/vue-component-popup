@@ -4,6 +4,7 @@ let componentPopUp = {
   install (Vue) {
     // 注入实例方法
     Vue.prototype.$popUp = componentPopUp.actions.$popUp
+    Vue.prototype.$popUp.cancel = componentPopUp.mutations.CANCEL_A_PROMPT_COMPONENT
     Vue.prototype.$popUp.store = componentPopUp
     // 注入GUI组件
     let PopUps = Vue.extend(appPrompt)
