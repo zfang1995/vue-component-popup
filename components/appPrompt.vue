@@ -1,5 +1,5 @@
 <template>
-  <div v-show="true" class="appPrompt">
+  <div v-show="true" id="appPrompt">
     <propmt-component  v-for="(element, index) in popUPComponents" 
       v-bind:key="index" 
       v-bind:component="element.vueComponent"
@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style scoped>
-  .appPrompt {
+  #appPrompt {
     width: 0;
     height: 0;
   }
