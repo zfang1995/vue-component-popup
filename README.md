@@ -12,6 +12,7 @@ Vue.use(vueComponentPopup)
 ```
 ## usage
 ### basis
+#### pop-up a component
 in any ``` .vue ``` single file, you can invoke components pop-up easily by using ``` this.$popUp ```  method. for example: 
 ``` html
 <script>
@@ -20,10 +21,22 @@ in any ``` .vue ``` single file, you can invoke components pop-up easily by usin
   export default {
     mounted() {
       this.$popUp(test)
-    }
-  }
+    }b
 </script>
 ```
+#### cancel a pop-up
+for axample:
+``` javascript
+this.$popUp.cancel(test) // destory the component--"test" with its wrapper.
+this.$popUp.cancel() // if method--"cancel" doesn`t received any argument, it will destory the lastest popped component.
+```
+another way:
+``` javascript
+this.$popUp(test)
+  .then(cancel => cancel())
+// when $popUp method has been executed, it will return a promise object, and a cancel function will be passed to its callback function.
+```
+
 ### advanced options
 the ``` this.$popUp ``` method accepts another object type argument for receiving options,
 for example:
