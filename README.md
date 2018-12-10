@@ -13,7 +13,7 @@ Vue.use(vueComponentPopup)
 ## usage
 ### basis
 #### pop-up a component
-in any ``` .vue ``` single file, you can invoke components pop-up easily by using ``` this.$popUp ```  method. for example: 
+you can invoke components pop-up easily by using ``` this.$popUp ```  method in any ``` .vue ``` file. for example: 
 ``` html
 <script>
   import test from '@/components/common/test.vue'
