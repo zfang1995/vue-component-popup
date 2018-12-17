@@ -1,22 +1,22 @@
 <template>
   <div v-show="true" id="appPrompt">
-    <propmt-component  v-for="(element, index) in popUPComponents" 
+    <popup-component  v-for="(element, index) in popUPComponents" 
       v-bind:key="index" 
-      v-bind:component="element.vueComponent"
-      v-bind:wrapperStyle="element.wrapperStyle">
+      v-bind:component="element.component"
+      v-bind="element.options">
 
-    </propmt-component>
+    </popup-component>
   </div>
 </template>
 
 <script>
-import propmtComponent from './promptComponent.vue'
+import popupComponent from './popupComponent.vue'
 
 export default {
-  components: {propmtComponent},
+  components: {popupComponent},
   data () {
     return {
-      popUPComponents: this.$popUp.store.state.vueComponents
+      popUPComponents: this.$popUp.store.state.components
     }
   }
 }

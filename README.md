@@ -7,8 +7,8 @@ yarn install vue-component-popup --save
 ```
 then , in main.js
 ``` javascript
-import vueComponentPopup from 'vue-component-popup'
-Vue.use(vueComponentPopup)
+import componentPopup from 'vue-component-popup'
+Vue.use(componentPopup)
 ```
 ## usage
 ### basis
@@ -27,8 +27,8 @@ in any ``` .vue ``` single file, you can invoke components pop-up easily by usin
 #### cancel a pop-up
 for axample:
 ``` javascript
-this.$popUp.cancel(test) // destory the component--"test" with its wrapper.
-this.$popUp.cancel() // if method--"cancel" doesn`t received any argument, it will destory the lastest popped component.
+this.$popUp.cancel(test) // destroy the component--"test" with its wrapper.
+this.$popUp.cancel() // if method--"cancel" doesn`t received any argument, it will destroy the lastest popped component.
 ```
 another way:
 ``` javascript

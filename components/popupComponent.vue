@@ -11,9 +11,9 @@
 
 <script>
 export default {
-  props: ['component', 'wrapperStyle'],
+  props: ['component', 'wrapperStyle', 'livingTime', 'mountedEventEmiter', 'destroyedEventEmiter'],
   filters: {
-    generateStyleFromDictionary (dictionary = {}) {
+    generateStyleFromDictionary (dictionary = {}) {z
       let style = ''
       for (const key in dictionary) {
         if (dictionary.hasOwnProperty(key)) {
@@ -26,8 +26,15 @@ export default {
   },
   methods: {
     cancelThisComponent () {
-      this.$popUp.store.mutations.CANCEL_A_PROMPT_COMPONENT(this.component)
+      this.$popUp.store.mutations.CANCEL_A_POPUP_COMPONENT(this.component)
     }
+  },
+  mounted () {
+    if (livingTime) { setTimeout(() => this.cancelThisComponent(), livingTime) } // 挂载后开始生存时间倒计时
+    this.mountedEventEmiter(this)
+  },
+  destroyed () {
+    this.destroyedEventEmiter()
   }
 }
 </script>

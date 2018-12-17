@@ -3,35 +3,47 @@ import appPrompt from './components/appPrompt.vue'
 let componentPopUp = {
   install (Vue) {
     // 注入实例方法
-    Vue.prototype.$popUp = componentPopUp.actions.$popUp
-    Vue.prototype.$popUp.cancel = componentPopUp.mutations.CANCEL_A_PROMPT_COMPONENT
+    Vue.prototype.$popUp = componentPopUp.actions.popUp
+    Vue.prototype.$popUp.cancel = componentPopUp.actions.cancel
     Vue.prototype.$popUp.store = componentPopUp
     // 注入GUI组件
     let PopUps = Vue.extend(appPrompt)
     let popUp = new PopUps()
     document.body.appendChild(popUp.$mount().$el)
-    
-
   },
   state: {
-    vueComponents: []
+    components: [],
+    options: []
   },
   mutations: {
-    ADD_PROMPT_COMPONENT ({vueComponent, wrapperStyle, stackContext}) {
-      componentPopUp.state.vueComponents.push({vueComponent, wrapperStyle, stackContext})
+    ADD_POPUP_COMPONENT ({component, wrapperStyle, stackContext}) {
+      componentPopUp.state.components.push(component)
+      componentPopUp.state.options.push(options)
     },
-    CANCEL_A_PROMPT_COMPONENT (vueComponent) {
-      componentPopUp.state.vueComponents.splice(componentPopUp.state.vueComponents.findIndex(element => element === vueComponent), 1)
+    CANCEL_A_POPUP_COMPONENT (component) {
+      componentPopUp.state.components.splice(componentPopUp.state.components.findIndex(element => element === component), 1)
+      componentPopUp.state.options.splice(componentPopUp.state.options.findIndex(element => element === options), 1)
     }
   },
   actions: {
-    $popUp (vueComponent, {livingTime = undefined, wrapperStyle = undefined, stackContext = '#appPrompt'}) {
-      if (typeof livingTime === 'number') { 
-        setTimeout(() => componentPopUp.mutations.CANCEL_A_PROMPT_COMPONENT(vueComponent), livingTime) 
-      }
-      componentPopUp.mutations.ADD_PROMPT_COMPONENT({vueComponent, wrapperStyle, stackContext})
+    async popUp (component,
+                 options = {
+                    livingTime = undefined,
+                    wrapperStyle = undefined,
+                    stackContext = '#appPrompt',
+                    mountedEventEmiter = undefined,
+                    destroyedEventEmiter = undefined
+                  }
+                ) {
+      componentPopUp.mutations.ADD_POPUP_COMPONENT({component, options})
       return new Promise((resolve) => {
-        resolve(function cancel () { componentPopUp.mutations.CANCEL_A_PROMPT_COMPONENT(vueComponent) })
+        options.mountedEventEmiter = resolve
+      })
+    },
+    async cancel (component) {
+      componentPopUp.mutations.CANCEL_A_POPUP_COMPONENT(component)
+      return new Promise(resolve => {
+        options.destroyedEventEmiter = resolve
       })
     }
   }
