@@ -24,17 +24,34 @@ in any ``` .vue ``` single file, you can invoke components pop-up easily by usin
     }b
 </script>
 ```
+##### wrokflow with promise
+```javascript
+// at the end of this method run, these will return a promise object, and the instance of given component in arguments will be resolved while the instance being mounted.
+
+this.$popUp(test)
+  .then(vm => settimeout( () => vm.$refresh() ), 1000 ) // vm is a instance of test
+```
+
+
 #### cancel a pop-up
 for axample:
 ``` javascript
-this.$popUp.cancel(test) // destroy the component--"test" with its wrapper.
+this.$popUp.cancel(test) // destroy the instance of component--"test" with its wrapper.
 this.$popUp.cancel() // if method--"cancel" doesn`t received any argument, it will destroy the lastest popped component.
 ```
-another way:
+##### wrokflow with promise
+```javascript
+// at the end of this method run, these will return a promise object, and undefineded will be resolved while the instance being destroyed.
+
+this.$popUp.cancel(test)
+  .then( /* do something else */ )
+```
+
+#### cancel many pop-ups
+for example:
 ``` javascript
-this.$popUp(test)
-  .then(cancel => cancel())
-// when $popUp method has been executed, it will return a promise object, and a cancel function will be passed to its callback function. This cancel function is same as this.$popUp.cancel .
+this.$popUp.cancelAll(test) // destroy all the instances of component--"test" with these wrappers
+this.$popUp.cancelAll() // if method--"cancel" doesn`t received any argument, it will destroy all popped components.
 ```
 
 ### advanced options
