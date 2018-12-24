@@ -1,9 +1,9 @@
 <template>
   <div v-show="true" id="appPrompt">
-    <popup-component  v-for="(element, index) in popUPComponents" 
+    <popup-component  v-for="(element, index) in popUpComponents" 
       v-bind:key="index" 
-      v-bind:component="element.component"
-      v-bind="element.options">
+      v-bind:component="element"
+      v-bind="popUpOptions[index]">
 
     </popup-component>
   </div>
@@ -16,7 +16,8 @@ export default {
   components: {popupComponent},
   data () {
     return {
-      popUPComponents: this.$popUp.store.state.components
+      popUpComponents: this.$popUp.state.components,
+      popUpOptions: this.$popUp.state.options
     }
   }
 }

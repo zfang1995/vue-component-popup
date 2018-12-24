@@ -13,15 +13,15 @@ Vue.use(componentPopup)
 ## usage
 ### basis
 #### pop-up a component
-in any ``` .vue ``` single file, you can invoke components pop-up easily by using ``` this.$popUp ```  method. for example: 
+at any javascript workspace in your project, you can invoke a component pop-up easily by using ``` appPrompt.popUp ```  method. for example: 
 ``` html
 <script>
   import test from '@/components/common/test.vue'
 
   export default {
     mounted() {
-      this.$popUp(test)
-    }b
+      appPrompt.popUp(test)
+    }
 </script>
 ```
 ##### wrokflow with promise
@@ -67,3 +67,4 @@ this.$popUp(test, {
 | --------- | -------- | -------- |
 | livingTime  | the component pop-up will be cancel after (value)ms | 1000 |
 | wrapperStyle | the style of pop-up component`s wrapper| {'background-color': 'rgba(95, 75, 200, 0.5)', ‘margin’: 'none'} |
+| props | props for binding on given component | {'prop1': data1, 'prop2': data2} |

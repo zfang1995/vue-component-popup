@@ -1,8 +1,9 @@
 <template>
   <div class="wrap" :style="wrapperStyle | generateStyleFromDictionary" 
-  v-on:click.stop.native="cancelThisComponent" 
+  v-on:click.stop="cancelThisComponent" 
   v-on:touchend.stop.native="cancelThisComponent">
-    <component v-bind:is="component" 
+    <component v-bind:is="component"
+    v-bind="props" 
     v-on:click.stop.native 
     v-on:touchend.stop.native>
     </component>
@@ -11,9 +12,9 @@
 
 <script>
 export default {
-  props: ['component', 'wrapperStyle', 'livingTime', 'mountedEventEmiter', 'destroyedEventEmiter'],
+  props: ['component', 'wrapperStyle', 'livingTime', 'mountedEventEmiter', 'destroyedEventEmiter', 'props'],
   filters: {
-    generateStyleFromDictionary (dictionary = {}) {z
+    generateStyleFromDictionary (dictionary = {}) {
       let style = ''
       for (const key in dictionary) {
         if (dictionary.hasOwnProperty(key)) {
@@ -26,15 +27,15 @@ export default {
   },
   methods: {
     cancelThisComponent () {
-      this.$popUp.store.mutations.CANCEL_A_POPUP_COMPONENT(this.component)
+      this.$popUp.cancel(this.component)
     }
   },
   mounted () {
-    if (livingTime) { setTimeout(() => this.cancelThisComponent(), livingTime) } // 挂载后开始生存时间倒计时
-    this.mountedEventEmiter(this)
+    if (this.livingTime) { setTimeout(() => this.cancelThisComponent(), this.livingTime) } // 挂载后开始生存时间倒计时
+    if (this.mountedEventEmiter) this.mountedEventEmiter(this)
   },
   destroyed () {
-    this.destroyedEventEmiter()
+    if (this.destroyedEventEmiter) this.destroyedEventEmiter()
   }
 }
 </script>
