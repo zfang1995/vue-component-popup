@@ -3,11 +3,11 @@
 ## install
 ### via vue-cli
 ``` bash
-yarn add vue-component-popup --save
+yarn add vue-popup-component --save
 ```
 then , in main.js
 ``` javascript
-import vueComponentPopup from 'vue-component-popup'
+import vueComponentPopup from 'vue-popup-component'
 Vue.use(vueComponentPopup)
 ```
 ## usage
