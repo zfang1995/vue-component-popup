@@ -21,7 +21,7 @@ you can invoke components pop-up easily by using ``` this.$popUp ```  method in 
   export default {
     mounted() {
       this.$popUp(test)
-    }b
+    }
 </script>
 ```
 #### cancel a pop-up
