@@ -3,7 +3,7 @@
 ## install
 ### via vue-cli
 ``` bash
-yarn install vue-component-popup --save
+yarn add vue-component-popup --save
 ```
 then , in main.js
 ``` javascript
