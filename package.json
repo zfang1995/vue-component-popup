@@ -1,0 +1,9 @@
+{
+  "name": "vue-popup-component",
+  "version": "1.0.0",
+  "description": "a vue plugin for show and manage pop-up components easier. 一个vue的弹窗插件。",
+  "main": "index.js",
+  "repository": "git@github.com:zfang1995/vue-component-popup.git",
+  "author": "zfang <747320213@qq.com>",
+  "license": "MIT"
+}
